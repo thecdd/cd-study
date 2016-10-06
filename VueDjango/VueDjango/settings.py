@@ -25,7 +25,7 @@ SECRET_KEY = 'w$rx@%b_0^&+q)84_e6vwz-0yqpd7cnx!-=pyhq9ix^$)mo(cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
+    'FreeMap'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'VueDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR+'/FreeMap/app'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +121,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "common/static"),
+    os.path.join(BASE_DIR, "FreeMap/app"),
+)
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_ENABLED = (not DEBUG)
+COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE_CONTEXT = {
+    'FREE_MAP_BASE': 'free-map',
+    'STATIC_URL': STATIC_URL
+}

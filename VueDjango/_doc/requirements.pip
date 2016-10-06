@@ -1,0 +1,10 @@
+pymongo==2.8
+dbms
+Django==1.9.5
+mongoengine==0.9
+blinker==1.4
+pytz
+APScheduler==3.0.5
+django_compressor==2.0
+xlwt==1.0.0
+eventlet==0.19.0
