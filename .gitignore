@@ -98,3 +98,4 @@ VueDjango/db.sqlite3
 
 # static
 VueDjango/static/*
+VueDjango/webpack-stats.json

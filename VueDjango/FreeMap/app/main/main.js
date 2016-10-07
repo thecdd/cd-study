@@ -1,9 +1,10 @@
 require('./main.css');
-var Vue = require("vue");
-var VueStrap = require('vue-strap');
+require('leaflet-draw/dist/leaflet.draw.css');
 var L = require('leaflet');
 require('leaflet-draw');
-require('leaflet-draw/dist/leaflet.draw.css');
+
+var Vue = require("vue");
+var VueStrap = require('vue-strap');
 
 
 Vue.config.delimiters = ['${', '}'];
@@ -23,16 +24,43 @@ var app = new Vue({
         me.map = L.map('main-map',{
             layers: [osm]
         }).setView(new L.LatLng(0,0), true);
-        // Initialise the FeatureGroup to store editable layers
-        var drawnItems = new L.FeatureGroup();
-        me.map.addLayer(drawnItems);
+        var editableLayers = new L.FeatureGroup();
+        me.map.addLayer(editableLayers);
 
-        // Initialise the draw control and pass it the FeatureGroup of editable layers
-        var drawControl = new L.Control.Draw({
+        var options = {
+            position: 'topright',
+            draw: {
+                polyline: {
+                    shapeOptions: {
+                        color: '#f357a1',
+                        weight: 10
+                    }
+                },
+                polygon: {
+                    allowIntersection: false, // Restricts shapes to simple polygons
+                    drawError: {
+                        color: '#e1e100', // Color the shape will turn when intersects
+                        message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+                    },
+                    shapeOptions: {
+                        color: '#bada55'
+                    }
+                },
+                circle: true,
+                rectangle: {
+                    shapeOptions: {
+                        clickable: false
+                    }
+                },
+                marker: true
+            },
             edit: {
-                featureGroup: drawnItems
+                featureGroup: editableLayers,
+                remove: true
             }
-        });
+        };
+
+        var drawControl = new L.Control.Draw(options);
         me.map.addControl(drawControl);
 
         me.map.on('draw:created', function (e) {
@@ -40,18 +68,10 @@ var app = new Vue({
                 layer = e.layer;
 
             if (type === 'marker') {
-                // Do marker specific actions
+                layer.bindPopup('A popup!');
             }
 
-            // Do whatever else you need to. (save to db, add to map etc)
-            me.map.addLayer(layer);
-        });
-
-        me.map.on('draw:edited', function (e) {
-            var layers = e.layers;
-            layers.eachLayer(function (layer) {
-                //do whatever you want, most likely save back to db
-            });
+            editableLayers.addLayer(layer);
         });
     }
 })
