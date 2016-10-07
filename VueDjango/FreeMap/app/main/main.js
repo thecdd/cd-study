@@ -8,7 +8,7 @@ var VueStrap = require('vue-strap');
 
 
 Vue.config.delimiters = ['${', '}'];
-L.Icon.Default.imagePath = '/static/leaflet/images'
+L.Icon.Default.imagePath = '/static/leaflet/images/'
 
 var app = new Vue({
     el: '#app',
