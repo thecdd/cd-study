@@ -24,7 +24,8 @@ var app = new Vue({
         });
         me.map = L.map('main-map',{
             layers: [osm],
-            maxBounds: L.latLngBounds(L.latLng(-180, 180), L.latLng(180, -180))
+            maxBounds: L.latLngBounds(L.latLng(-180, 180), L.latLng(180, -180)),
+            minZoom: 2
         }).setView(new L.LatLng(0,0), true);
 
         me.initMapControl(me.map);
@@ -45,7 +46,7 @@ var app = new Vue({
                     polyline: {
                         shapeOptions: {
                             color: '#f357a1',
-                            weight: 10
+                            weight: 1
                         }
                     },
                     polygon: {
@@ -85,6 +86,8 @@ var app = new Vue({
 
                 editableLayers.addLayer(layer);
             });
+
+            return editableLayers;
         }
     }
 })
