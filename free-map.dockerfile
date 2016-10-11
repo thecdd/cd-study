@@ -34,7 +34,7 @@ COPY ApacheServerConfig/start.sh ${APP_DIR}/
 
 RUN     fromdos ${APP_DIR}/start.sh
 
-RUN	    pip install -r ${APP_DIR}/_doc/requirements.pip
+RUN	    pip install -r ${APP_DIR}/_doc/requirements.pip -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
 
 RUN     cd /home/csapp/GVVMC && \
 		chgrp -R www-data logs && \
@@ -49,6 +49,7 @@ RUN     cd ${PROJECT_HOME}/${PROJECT_NAME} && \
 		chmod -R 644 ${APP_NAME} && \
 		find ${APP_NAME} -type d -exec chmod -R 755 \{\} \; && \
 		cd ${APP_DIR} && \
+		npm --registry https://registry.npm.taobao.org info underscore  && \
 		npm install && \
 		node_modules\.bin\webpack --config webpack.config.js && \
         chmod +x ${APP_DIR}/start.sh
