@@ -1,0 +1,7 @@
+thecd-free-map:
+  image: thecd/free-map:latest
+  net: host
+  ports:
+    - "8080:80"
+  container_name: thecd-free-map
+  command: ./VueDjango/start.sh
