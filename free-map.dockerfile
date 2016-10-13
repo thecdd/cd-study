@@ -49,5 +49,6 @@ RUN     fromdos ${APP_DIR}/start.sh && \
 		npm install && \
 		rm -rf ${APP_DIR}/static && \
 		mkdir ${APP_DIR}/static && \
+		mv ${APP_DIR}/common/static/* ${APP_DIR}/static && \
 		nodejs node_modules/webpack/bin/webpack.js --config webpack.config.js && \
         chmod +x ${APP_DIR}/start.sh
