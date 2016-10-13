@@ -44,7 +44,8 @@ RUN     fromdos ${APP_DIR}/start.sh && \
 		cd ${APP_DIR} && \
 		npm install rimraf -g && \
 		rimraf node_modules && \
-		npm --registry https://registry.npm.taobao.org info underscore  && \
+		npm config set registry https://registry.npm.taobao.org  && \
+		npm info underscore && \
 		npm install && \
 		rm -rf ${APP_DIR}/static && \
 		mkdir ${APP_DIR}/static && \

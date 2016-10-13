@@ -13,6 +13,8 @@ service apache2 reload
 
 a2ensite dev.sitename.conf
 
-nodejs node_modules/webpack/bin/webpack.js --config webpack.config.js --watch
+service apache2 reload
+
+python /home/app/thecd/VueDjango/running.py
 
 /bin/bash
