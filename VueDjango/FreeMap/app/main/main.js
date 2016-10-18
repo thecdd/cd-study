@@ -6,15 +6,81 @@ require('../plugin/leaflet/leaflet-mouse-position.js');
 
 var Vue = require("vue");
 var VueStrap = require('vue-strap');
+require('./component/pathOptionPanel.js')
 
-
-Vue.config.delimiters = ['${', '}'];
 L.Icon.Default.imagePath = '/static/leaflet/images/'
 
 var app = new Vue({
     el: '#app',
+    component:['path-option-panel'],
     data:{
-        message:'this is page'
+        drawerOptions:{
+            polyline: {
+                allowIntersection: true,
+                guidelineDistance: 20,
+                metric: true,
+                zIndexOffset: 2000,
+                shapeOptions: {
+                    stroke: true,
+                    color: '#03f',
+                    weight: 5,
+                    opacity: 0.5,
+                    fill: true,
+                    fillColor: '#03f',
+                    fillRule: 'evenodd',
+                    className: '',
+                    smoothFactor: 1.0,
+                    noClip: false
+                }
+            },
+            polygon: {
+                showArea: false,
+                allowIntersection: true,
+                guidelineDistance: 20,
+                metric: true,
+                zIndexOffset: 2000,
+                shapeOptions: {
+                    stroke: true,
+                    color: '#03f',
+                    weight: 5,
+                    opacity: 0.5,
+                    fill: true,
+                    fillColor: '#03f',
+                    fillRule: 'evenodd',
+                    className: '',
+                    smoothFactor: 1.0,
+                    noClip: false
+                }
+            },
+            rectangle: {
+                shapeOptions: {
+                    stroke: true,
+                    color: '#03f',
+                    weight: 5,
+                    opacity: 0.5,
+                    fill: true,
+                    fillColor: '#03f',
+                    fillRule: 'evenodd',
+                    className: ''
+                }
+            },
+            circle: {
+                shapeOptions: {
+                    stroke: true,
+                    color: '#03f',
+                    weight: 5,
+                    opacity: 0.5,
+                    fill: true,
+                    fillColor: '#03f',
+                    fillRule: 'evenodd',
+                    className: ''
+                }
+            },
+            marker: {
+                zIndexOffset: 2000,
+                defaultPopup: 'A popup'
+            }
+        }
     },
     map: null,
     ready:function(){
@@ -37,36 +103,13 @@ var app = new Vue({
             L.control.scale().addTo(map);
         },
         initMapDrawTool: function(map){
+            var me = this;
             var editableLayers = new L.FeatureGroup();
             map.addLayer(editableLayers);
 
             var options = {
                 position: 'topright',
-                draw: {
-                    polyline: {
-                        shapeOptions: {
-                            color: '#f357a1',
-                            weight: 1
-                        }
-                    },
-                    polygon: {
-                        allowIntersection: false, // Restricts shapes to simple polygons
-                        drawError: {
-                            color: '#e1e100', // Color the shape will turn when intersects
-                            message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
-                        },
-                        shapeOptions: {
-                            color: '#bada55'
-                        }
-                    },
-                    circle: true,
-                    rectangle: {
-                        shapeOptions: {
-                            clickable: false
-                        }
-                    },
-                    marker: true
-                },
+                draw: me.drawerOptions,
                 edit: {
                     featureGroup: editableLayers,
                     remove: true
@@ -81,7 +124,9 @@ var app = new Vue({
                     layer = e.layer;
 
                 if (type === 'marker') {
-                    layer.bindPopup('A popup!');
+                    var popUpEl = document.createElement('input');
+                    popUpEl.value = me.drawerOptions.marker.defaultPopup;
+                    layer.bindPopup(popUpEl);
                 }
 
                 editableLayers.addLayer(layer);
