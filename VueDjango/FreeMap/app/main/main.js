@@ -12,8 +12,16 @@ L.Icon.Default.imagePath = '/static/leaflet/images/'
 
 var app = new Vue({
     el: '#app',
-    component:['path-option-panel'],
+    component:['path-option-panel',''],
+    components:{
+        alert: VueStrap.alert
+    },
     data:{
+        alert:{
+            showAlert:false,
+            alertTitle:'',
+            alertContext:''
+        },
         drawerOptions:{
             polyline: {
                 allowIntersection: true,
@@ -145,6 +153,9 @@ var app = new Vue({
                 }
             }
             me.mapTool.drawControl.setDrawingOptions(me.drawerOptions);
+            me.alert.showAlert = true;
+            me.alert.alertTitle = 'Success';
+            me.alert.alertContext = 'The new path options is applied';
         }
     }
 })
