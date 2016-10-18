@@ -57,9 +57,10 @@ Vue.component('path-option-panel', {
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Fill Color :</label>'+
-    '						<div class="col-lg-8">'+
+    '						<div class="col-lg-7">'+
     '							<input type="text" class="form-control" name="fillColor" placeholder="Fill Color" v-model="pathOption.fillColor">'+
     '						</div>'+
+    '                       <div class="col-lg-1 color-preview" v-bind:style="{background: pathOption.fillColor}">&nbsp;</div>'+
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Fill Rule :</label>'+
@@ -72,8 +73,8 @@ Vue.component('path-option-panel', {
     '					</div>'+
     '					<div class="form-group">'+
     '						<div class="col-lg-12">'+
-    '							<a class="btn btn-primary function-btn">Save</a>'+
-    '							<a class="btn btn-warning function-btn">Reset</a>'+
+    '							<a class="btn btn-primary function-btn" v-on:click="save">Save</a>'+
+    '							<a class="btn btn-warning function-btn" v-on:click="reset">Reset</a>'+
     '						</div>'+
     '					</div>'+
     '				</form>'+
@@ -95,6 +96,30 @@ Vue.component('path-option-panel', {
                 fill: true,
                 fillColor: '#03f',
                 fillRule: 'evenodd'
+            },
+            latestPathOption: {
+                stroke: true,
+                color: '#03f',
+                weight: 5,
+                opacity: 0.5,
+                fill: true,
+                fillColor: '#03f',
+                fillRule: 'evenodd'
+            }
+        }
+    },
+    methods:{
+        save: function(){
+            var me=this;
+            for(var key in me.pathOption){
+                me.latestPathOption[key]=me.pathOption[key];
+            }
+            me.$dispatch('change-path-option',me.pathOption);
+        },
+        reset: function(){
+            var me=this;
+            for(var key in me.pathOption){
+                me.pathOption[key]=me.latestPathOption[key];
             }
         }
     },

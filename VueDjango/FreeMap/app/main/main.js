@@ -83,6 +83,7 @@ var app = new Vue({
         }
     },
     map: null,
+    mapTool: null,
     ready:function(){
         var me = this;
         var osm =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{
@@ -93,7 +94,7 @@ var app = new Vue({
             maxBounds: L.latLngBounds(L.latLng(-180, 180), L.latLng(180, -180)),
             minZoom: 2
         }).setView(new L.LatLng(0,0), true);
-
+        me.mapTool = {};
         me.initMapControl(me.map);
         me.initMapDrawTool(me.map);
     },
@@ -118,6 +119,7 @@ var app = new Vue({
 
             var drawControl = new L.Control.Draw(options);
             map.addControl(drawControl);
+            me.mapTool.drawControl = drawControl;
 
             map.on('draw:created', function (e) {
                 var type = e.layerType,
@@ -131,8 +133,18 @@ var app = new Vue({
 
                 editableLayers.addLayer(layer);
             });
-
-            return editableLayers;
+            me.mapTool.editableLayers = editableLayers;
+        },
+        changePathOption: function(pathOption){
+            var me = this;
+            for(var type in me.drawerOptions){
+                if(me.drawerOptions[type].shapeOptions){
+                    for(var key in pathOption){
+                        me.drawerOptions[type].shapeOptions[key] = pathOption[key];
+                    }
+                }
+            }
+            me.mapTool.drawControl.setDrawingOptions(me.drawerOptions);
         }
     }
 })
