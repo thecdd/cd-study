@@ -4,6 +4,7 @@ var L = require('leaflet');
 require('leaflet-draw');
 require('../plugin/leaflet/leaflet-mouse-position.js');
 
+
 var Vue = require("vue");
 var VueStrap = require('vue-strap');
 require('./component/pathOptionPanel.js')
@@ -36,6 +37,7 @@ var app = new Vue({
                     fill: true,
                     fillColor: '#03f',
                     fillRule: 'evenodd',
+                    fillOpacity: 0.5,
                     className: '',
                     smoothFactor: 1.0,
                     noClip: false
@@ -55,6 +57,7 @@ var app = new Vue({
                     fill: true,
                     fillColor: '#03f',
                     fillRule: 'evenodd',
+                    fillOpacity: 0.5,
                     className: '',
                     smoothFactor: 1.0,
                     noClip: false
@@ -69,6 +72,7 @@ var app = new Vue({
                     fill: true,
                     fillColor: '#03f',
                     fillRule: 'evenodd',
+                    fillOpacity: 0.5,
                     className: ''
                 }
             },
@@ -81,12 +85,13 @@ var app = new Vue({
                     fill: true,
                     fillColor: '#03f',
                     fillRule: 'evenodd',
+                    fillOpacity: 0.5,
                     className: ''
                 }
             },
             marker: {
                 zIndexOffset: 2000,
-                defaultPopup: 'A popup'
+                defaultPopupHTML: '<input value="A popup" />'
             }
         }
     },
@@ -94,8 +99,8 @@ var app = new Vue({
     mapTool: null,
     ready:function(){
         var me = this;
-        var osm =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        var osm =L.tileLayer('http://{s}.tiles.mapbox.com/v3/lrqdo.me2bng9n/{z}/{x}/{y}.png',{
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | &copy; <a href="http://mapbox.com">Mapbox</a>'
         });
         me.map = L.map('main-map',{
             layers: [osm],
@@ -134,12 +139,15 @@ var app = new Vue({
                     layer = e.layer;
 
                 if (type === 'marker') {
-                    var popUpEl = document.createElement('input');
-                    popUpEl.value = me.drawerOptions.marker.defaultPopup;
-                    layer.bindPopup(popUpEl);
+                    layer.bindPopup($(me.drawerOptions.marker.defaultPopupHTML)[0]);
                 }
-
                 editableLayers.addLayer(layer);
+            });
+            map.on('draw:edited', function (e) {
+                var layers = e.layers;
+                layers.eachLayer(function (layer) {
+
+                });
             });
             me.mapTool.editableLayers = editableLayers;
         },

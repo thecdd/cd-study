@@ -18,6 +18,7 @@
     "vue-strap": "^1.1.26",
     "bootstrap": "^3.3.7",
     "leaflet": "~1.0.1",
-    "leaflet-draw": "~0.2.3"
+    "leaflet-draw": "~0.2.3",
+    "jquery": "^2.2.3"
   }
 }

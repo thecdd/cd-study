@@ -25,20 +25,20 @@ Vue.component('path-option-panel', {
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Color :</label>'+
     '						<div class="col-lg-7">'+
-    '							<input type="text" class="form-control" name="color" placeholder="Color" v-model="pathOption.color">'+
+    '							<input type="text" class="form-control" name="color" placeholder="Color" v-model="pathOption.color" :disabled="!pathOption.stroke">'+
     '						</div>'+
     '                       <div class="col-lg-1 color-preview" v-bind:style="{background: pathOption.color}">&nbsp;</div>'+
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Weight :</label>'+
     '						<div class="col-lg-8">'+
-    '							<input type="number" class="form-control" name="weight" placeholder="Weight" v-model="pathOption.weight">'+
+    '							<input type="number" class="form-control" name="weight" placeholder="Weight" v-model="pathOption.weight" :disabled="!pathOption.stroke">'+
     '						</div>'+
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Opacity :</label>'+
     '						<div class="col-lg-8">'+
-    '							<input type="text" class="form-control" name="opacity" placeholder="Opacity" v-model="pathOption.opacity">'+
+    '							<input type="text" class="form-control" name="opacity" placeholder="Opacity" v-model="pathOption.opacity" :disabled="!pathOption.stroke">'+
     '						</div>'+
     '					</div>'+
     '				</form>'+
@@ -58,17 +58,23 @@ Vue.component('path-option-panel', {
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Fill Color :</label>'+
     '						<div class="col-lg-7">'+
-    '							<input type="text" class="form-control" name="fillColor" placeholder="Fill Color" v-model="pathOption.fillColor">'+
+    '							<input type="text" class="form-control" :disabled="!pathOption.fill" name="fillColor" placeholder="Fill Color" v-model="pathOption.fillColor">'+
     '						</div>'+
     '                       <div class="col-lg-1 color-preview" v-bind:style="{background: pathOption.fillColor}">&nbsp;</div>'+
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Fill Rule :</label>'+
     '						<div class="col-lg-8">'+
-    '                           <v-select :value.sync="pathOption.fillRule">'+
+    '                           <v-select :value.sync="pathOption.fillRule" :disabled="!pathOption.fill">'+
     '                               <v-option value="nonzero">nonzero</v-option>'+
     '                               <v-option value="evenodd">evenodd</v-option>'+
     '                           </v-select>'+
+    '						</div>'+
+    '					</div>'+
+    '					<div class="form-group">'+
+    '						<label class="col-lg-4 control-label">Fill Opacity :</label>'+
+    '						<div class="col-lg-8">'+
+    '							<input type="text" class="form-control" name="fillOpacity" placeholder="Fill Opacity" v-model="pathOption.fillOpacity" :disabled="!pathOption.fill">'+
     '						</div>'+
     '					</div>'+
     '					<div class="form-group">'+
@@ -95,7 +101,8 @@ Vue.component('path-option-panel', {
                 opacity: 0.5,
                 fill: true,
                 fillColor: '#03f',
-                fillRule: 'evenodd'
+                fillRule: 'evenodd',
+                fillOpacity: 0.5,
             },
             latestPathOption: {
                 stroke: true,
@@ -104,7 +111,8 @@ Vue.component('path-option-panel', {
                 opacity: 0.5,
                 fill: true,
                 fillColor: '#03f',
-                fillRule: 'evenodd'
+                fillRule: 'evenodd',
+                fillOpacity: 0.5,
             }
         }
     },
