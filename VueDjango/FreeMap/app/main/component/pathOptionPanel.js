@@ -3,6 +3,7 @@ require("bootstrap-colorpicker");
 require("bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css");
 var Vue = require("vue");
 var VueStrap = require('vue-strap');
+var uuid = require('uuid');
 
 Vue.component('path-option-panel', {
     template:
@@ -27,7 +28,7 @@ Vue.component('path-option-panel', {
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Color :</label>'+
     '						<div class="col-lg-6">'+
-    '							<div class="colorpicker-component input-group">'+
+    '							<div id="{{id}}-color" class="colorpicker-component input-group">'+
     '                               <input type="text" class="form-control" name="color" placeholder="Color" v-model="pathOption.color" :disabled="!pathOption.stroke">'+
     '                               <span class="input-group-addon"><i></i></span>'+
     '                           </div>'+
@@ -61,7 +62,7 @@ Vue.component('path-option-panel', {
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Fill Color :</label>'+
-    '						<div class="col-lg-6">'+
+    '						<div id="{{id}}-fill" class="col-lg-6">'+
     '                           <div class="colorpicker-component input-group">'+
     '							    <input type="text" class="form-control" :disabled="!pathOption.fill" name="fillColor" placeholder="Fill Color" v-model="pathOption.fillColor">'+
     '                               <span class="input-group-addon"><i></i></span>'+
@@ -102,24 +103,25 @@ Vue.component('path-option-panel', {
         return {
             pathOption: {
                 stroke: true,
-                color: '#03f',
+                color: '#0033ff',
                 weight: 5,
                 opacity: 0.5,
                 fill: true,
-                fillColor: '#03f',
+                fillColor: '#0033ff',
                 fillRule: 'evenodd',
                 fillOpacity: 0.5,
             },
             latestPathOption: {
                 stroke: true,
-                color: '#03f',
+                color: '#0033ff',
                 weight: 5,
                 opacity: 0.5,
                 fill: true,
-                fillColor: '#03f',
+                fillColor: '#0033ff',
                 fillRule: 'evenodd',
                 fillOpacity: 0.5,
-            }
+            },
+            id: uuid.v4()
         }
     },
     methods:{
@@ -135,10 +137,18 @@ Vue.component('path-option-panel', {
             for(var key in me.pathOption){
                 me.pathOption[key]=me.latestPathOption[key];
             }
+            $('#'+me.id+'-color').colorpicker('setValue',me.pathOption.color);
+            $('#'+me.id+'-fill').colorpicker('setValue',me.pathOption.fillColor);
         }
     },
     ready: function(){
-        $('.colorpicker-component').colorpicker();
+        var me = this;
+        $('#'+me.id+'-color').colorpicker().on('changeColor',function(e){
+            me.pathOption.color = e.color.toHex();
+        });
+        $('#'+me.id+'-fill').colorpicker().on('changeColor',function(e){
+            me.pathOption.fillColor = e.color.toHex();
+        });
     },
     props: ['panelTitle']
 })
