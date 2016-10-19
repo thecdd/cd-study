@@ -7,7 +7,8 @@ require('../plugin/leaflet/leaflet-mouse-position.js');
 
 var Vue = require("vue");
 var VueStrap = require('vue-strap');
-require('./component/pathOptionPanel.js')
+require('./component/pathOptionPanel.js');
+require('./component/markOptionPanel.js');
 
 L.Icon.Default.imagePath = '/static/leaflet/images/'
 
@@ -91,7 +92,9 @@ var app = new Vue({
             },
             marker: {
                 zIndexOffset: 2000,
-                defaultPopupHTML: '<input value="A popup" />'
+                defaultPopupContent: '',
+                enable: true,
+                isHTML: false
             }
         }
     },
@@ -138,8 +141,14 @@ var app = new Vue({
                 var type = e.layerType,
                     layer = e.layer;
 
-                if (type === 'marker') {
-                    layer.bindPopup($(me.drawerOptions.marker.defaultPopupHTML)[0]);
+                if (type === 'marker' && me.drawerOptions.marker.enable) {
+                    var popUpDom = document.createElement('div');
+                    if(me.drawerOptions.marker.isHTML){
+                        popUpDom.innerHTML = me.drawerOptions.marker.defaultPopupContent;
+                    }else{
+                        popUpDom.innerText = me.drawerOptions.marker.defaultPopupContent;
+                    }
+                    layer.bindPopup(popUpDom);
                 }
                 editableLayers.addLayer(layer);
             });
@@ -164,6 +173,16 @@ var app = new Vue({
             me.alert.showAlert = true;
             me.alert.alertTitle = 'Success';
             me.alert.alertContext = 'The new path options is applied';
+        },
+        changeMarkPopupOption: function(markOption) {
+            var me = this;
+            me.drawerOptions.marker.enable = markOption.enable;
+            me.drawerOptions.marker.defaultPopupContent = markOption.content;
+            me.drawerOptions.marker.isHTML = markOption.isHTML;
+
+            me.alert.showAlert = true;
+            me.alert.alertTitle = 'Success';
+            me.alert.alertContext = 'The new mark options is applied';
         }
     }
 })

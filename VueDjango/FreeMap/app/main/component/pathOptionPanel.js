@@ -1,4 +1,4 @@
-require("./pathOptionPanel.css");
+require("./optionPanel.css");
 var Vue = require("vue");
 var VueStrap = require('vue-strap');
 
@@ -24,7 +24,7 @@ Vue.component('path-option-panel', {
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Color :</label>'+
-    '						<div class="col-lg-7">'+
+    '						<div class="col-lg-6">'+
     '							<input type="text" class="form-control" name="color" placeholder="Color" v-model="pathOption.color" :disabled="!pathOption.stroke">'+
     '						</div>'+
     '                       <div class="col-lg-1 color-preview" v-bind:style="{background: pathOption.color}">&nbsp;</div>'+
@@ -57,7 +57,7 @@ Vue.component('path-option-panel', {
     '					</div>'+
     '					<div class="form-group">'+
     '						<label class="col-lg-4 control-label">Fill Color :</label>'+
-    '						<div class="col-lg-7">'+
+    '						<div class="col-lg-6">'+
     '							<input type="text" class="form-control" :disabled="!pathOption.fill" name="fillColor" placeholder="Fill Color" v-model="pathOption.fillColor">'+
     '						</div>'+
     '                       <div class="col-lg-1 color-preview" v-bind:style="{background: pathOption.fillColor}">&nbsp;</div>'+
