@@ -17,6 +17,7 @@
     "vue": "^1.0.26",
     "vue-strap": "^1.1.26",
     "bootstrap": "^3.3.7",
+    "bootstrap-colorpicker": "^2.3.6",
     "leaflet": "~1.0.1",
     "leaflet-draw": "~0.2.3",
     "jquery": "^2.2.3"
