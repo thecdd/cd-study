@@ -1,6 +1,6 @@
 require("./optionPanel.css");
-var Vue = require("vue");
-var VueStrap = require('vue-strap');
+var Vue = require("../../base.js").Vue;
+var VueStrap = require("../../base.js").VueStrap;
 
 Vue.component('mark-option-panel', {
     template:

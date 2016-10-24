@@ -1,16 +1,11 @@
+var L = require('../base.js').L;
+var Vue = require('../base.js').Vue;
+var VueStrap = require('../base.js').VueStrap;
+
+var mapHelper = require('../mix/mapHelper');
 require('./main.css');
-require('leaflet-draw/dist/leaflet.draw.css');
-var L = require('leaflet');
-require('leaflet-draw');
-require('../plugin/leaflet/leaflet-mouse-position.js');
-
-
-var Vue = require("vue");
-var VueStrap = require('vue-strap');
 require('./component/pathOptionPanel.js');
 require('./component/markOptionPanel.js');
-
-L.Icon.Default.imagePath = '/static/leaflet/images/'
 
 var app = new Vue({
     el: '#app',
@@ -18,6 +13,7 @@ var app = new Vue({
     components:{
         alert: VueStrap.alert
     },
+    mixins:[mapHelper],
     data:{
         alert:{
             showAlert:false,
@@ -102,14 +98,7 @@ var app = new Vue({
     mapTool: null,
     ready:function(){
         var me = this;
-        var osm =L.tileLayer('http://{s}.tiles.mapbox.com/v3/lrqdo.me2bng9n/{z}/{x}/{y}.png',{
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | &copy; <a href="http://mapbox.com">Mapbox</a>'
-        });
-        me.map = L.map('main-map',{
-            layers: [osm],
-            maxBounds: L.latLngBounds(L.latLng(-180, 180), L.latLng(180, -180)),
-            minZoom: 2
-        }).setView(new L.LatLng(0,0), true);
+        me.map = me.createMap('main-map');
         me.mapTool = {};
         me.initMapControl(me.map);
         me.initMapDrawTool(me.map);

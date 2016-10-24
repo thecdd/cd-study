@@ -1,9 +1,9 @@
 require("./optionPanel.css");
 require("bootstrap-colorpicker");
 require("bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css");
-var Vue = require("vue");
-var VueStrap = require('vue-strap');
-var uuid = require('uuid');
+var Vue = require("../../base.js").Vue;
+var VueStrap = require("../../base.js").VueStrap;
+var objectHelper = require("../../base.js").objectHelper;
 
 Vue.component('path-option-panel', {
     template:
@@ -121,7 +121,7 @@ Vue.component('path-option-panel', {
                 fillRule: 'evenodd',
                 fillOpacity: 0.5,
             },
-            id: uuid.v4()
+            id: objectHelper.generateID()
         }
     },
     methods:{
