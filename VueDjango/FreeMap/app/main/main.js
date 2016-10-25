@@ -2,7 +2,7 @@ var L = require('../base.js').L;
 var Vue = require('../base.js').Vue;
 var VueStrap = require('../base.js').VueStrap;
 
-var mapHelper = require('../mix/mapHelper');
+var mapHelper = require('../mixin/mapHelper');
 require('./main.css');
 require('./component/pathOptionPanel.js');
 require('./component/markOptionPanel.js');

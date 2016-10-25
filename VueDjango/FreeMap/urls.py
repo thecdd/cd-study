@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 import FreeMap.view.views
+import FreeMap.api.profile
 
-urlpatterns = [
+view = [
     url(r'^main/', FreeMap.view.views.view_main),
 ]
+
+api = [
+    url(r'^api/store/', FreeMap.api.profile.store_profile)
+]
+
+urlpatterns = []
+urlpatterns.extend(view)
+urlpatterns.extend(api)
