@@ -20,6 +20,7 @@ class UserCredential(Document, UpdateDocument):
     password = StringField()
     encryptionKey = StringField()
     identificationID = StringField()
+    userIPs = LineStringField()
     remark = StringField()
 
     meta = {
@@ -30,16 +31,19 @@ class UserCredential(Document, UpdateDocument):
     }
 
 
+class UserData(EmbeddedDocument):
+    data = StringField()
+    key = StringField()
+
+
 @update_system_info.apply
 class UserDataStore(Document, UpdateDocument):
     identificationID = StringField()
-    context = StringField()
-    dataID = UUIDField()
+    dataStore = EmbeddedDocumentListField(UserData)
 
     meta = {
         'collection': 'fm_user_credential',
         'indexes': [
-            {'fields': ['dataID']},
             {'fields': ['identificationID']},
         ],
     }

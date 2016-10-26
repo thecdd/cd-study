@@ -16,7 +16,9 @@ def encryp_psw(pw=None, salt=None):
         salt = make_random_salt()
     if pw is None:
         pw = make_random_salt(16)
-    return hashlib.sha256(pw.encode('utf-8') + salt.encode('utf-8')).hexdigest(), salt, pw
+        return hashlib.sha256(pw.encode('utf-8') + salt.encode('utf-8')).hexdigest(), salt, pw
+    else:
+        return hashlib.sha256(pw.encode('utf-8') + salt.encode('utf-8')).hexdigest(), salt
 
 
 def base64_decode(input_str):
