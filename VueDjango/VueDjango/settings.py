@@ -125,7 +125,7 @@ STATIC_URL = env.SITE_CONFIG.get('static_url')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "common/static"),
+    os.path.join(BASE_DIR, "static/common"),
     os.path.join(BASE_DIR, "FreeMap/app"),
 )
 

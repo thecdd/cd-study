@@ -47,8 +47,7 @@ RUN     fromdos ${APP_DIR}/start.sh && \
 		npm config set registry https://registry.npm.taobao.org  && \
 		npm info underscore && \
 		npm install && \
-		rm -rf ${APP_DIR}/static && \
-		mkdir ${APP_DIR}/static && \
-		mv ${APP_DIR}/common/static/* ${APP_DIR}/static && \
+		rm -rf ${APP_DIR}/static/bundles && \
+		mkdir ${APP_DIR}/static/bundles && \
 		nodejs node_modules/webpack/bin/webpack.js --config webpack.config.js && \
         chmod +x ${APP_DIR}/start.sh

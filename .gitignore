@@ -97,5 +97,5 @@ VueDjango/db.sqlite3
 */node_modules/*
 
 # static
-VueDjango/static/*
+VueDjango/static/bundles/*
 VueDjango/webpack-stats.json

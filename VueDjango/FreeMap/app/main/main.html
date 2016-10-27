@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load render_bundle from webpack_loader %}
+
+{% block extrahead %}
+{% render_bundle 'main' 'css' %}
+{% endblock %}
+
 {% block content %}
 {% verbatim %}
 <div id="app" class="container-fluid">
@@ -46,4 +52,6 @@
     </alert>
 </div>
 {% endverbatim %}
+
+{% render_bundle 'main' 'js' %}
 {% endblock %}

@@ -1,6 +1,8 @@
 thecd-free-map:
   image: thecd/free-map:latest
   net: host
+  environment:
+    - ENV_MONGODB_HOST=mongodb://10.222.47.53/vue-django
   ports:
     - "8888:80"
   container_name: thecd-free-map
