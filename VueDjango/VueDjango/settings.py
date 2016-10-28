@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from . import env
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -26,7 +26,6 @@ SECRET_KEY = 'w$rx@%b_0^&+q)84_e6vwz-0yqpd7cnx!-=pyhq9ix^$)mo(cj'
 DEBUG = env.IS_DEV
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -57,7 +56,7 @@ ROOT_URLCONF = 'VueDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR+'/FreeMap/app'],
+        'DIRS': [BASE_DIR + '/FreeMap/app'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'VueDjango.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -82,7 +80,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -102,7 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -115,7 +111,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -135,7 +130,6 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
@@ -146,3 +140,10 @@ WEBPACK_LOADER = {
         'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }
+
+# MONGO-ENGINE SESSION
+
+MONGOENGINE_SESSION_COLLECTION = 'gvvmc_dsh_user_session'
+SESSION_ENGINE = 'mongoengine.django.sessions'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = int(os.getenv('DSH_LOG_DEFAULT_LOG_NAME', str(24 * 60 * 60)))
