@@ -13,9 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
+import dashboard.view.views
 
-urlpatterns = [
-    url(r'^free-map/', include('FreeMap.urls')),
-    url(r'^dashboard/', include('dashboard.urls')),
+view = [
+    url(r'^main/', dashboard.view.views.view_main),
 ]
+
+api = [
+
+]
+
+urlpatterns = []
+urlpatterns.extend(view)
+urlpatterns.extend(api)

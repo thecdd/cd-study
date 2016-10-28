@@ -1,0 +1,279 @@
+{% extends "dashboard/app/base.html" %}
+{% load render_bundle from webpack_loader %}
+{% load staticfiles %}
+
+{% block extrahead %}
+{% render_bundle 'dashboardMain' 'css' %}
+{% endblock %}
+
+{% block content %}
+{% verbatim %}
+<div id="app">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Monitor Dashboard</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <label class="navbar-label"> From: </label>
+                    <input type="text" class="form-control" value="2016-10-16">
+                    <label class="navbar-label"> To: </label>
+                    <input type="text" class="form-control" value="2016-10-21">
+                    <a class="btn btn-info">Re-load</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-md-9 data-panel">
+                <div class="page-header">
+                    <h3>All Status</h3>
+                </div>
+                <div class="row status-panel">
+                    <div class="col-sm-2 col-md-2">
+                        <div class="status">
+                            <span class="total">30</span>
+                        </div>
+                        <h4>Case 1</h4>
+                        <span></span>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="status normal-status">
+                            <span class="total">30</span>
+                        </div>
+                        <h4>Case 2</h4>
+                        <span>it is Case 2</span>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="status warning-status">
+                            <span class="total">60</span>
+                        </div>
+                        <h4>Case 3</h4>
+                        <span>it is Case 3</span>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="status danger-status">
+                            <span class="total">200</span>
+                        </div>
+                        <h4>Case 4</h4>
+                        <span>it is Case 4</span>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="status danger-status">
+                            <span class="total">200</span>
+                        </div>
+                        <h4>Case 5</h4>
+                        <span>it is Case 5</span>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="status danger-status">
+                            <span class="total">200</span>
+                        </div>
+                        <h4>Case 6</h4>
+                        <span>it is Case 6</span>
+                    </div>
+                </div>
+
+                <div class="row data-table-panel">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <label class="control-label">Filter 1</label>
+                            <select class="form-control">
+                                <option selected="selected">All</option>
+                                <option>E002</option>
+                                <option>E002</option>
+                                <option>E002</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Filter 2</label>
+                            <select class="form-control">
+                                <option selected="selected">123456</option>
+                                <option>123456</option>
+                                <option>123456</option>
+                                <option>123456</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Filter 3</label>
+                            <select class="form-control">
+                                <option selected="selected">All</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="form-group pull-right">
+                            <label class="control-label">Current Case:</label>
+
+                            <p class="form-control-static">All</p>
+                        </div>
+                    </form>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Field 1</th>
+                            <th>Field 2</th>
+                            <th>Field 3</th>
+                            <th>Field 4</th>
+                            <th>Field 5</th>
+                            <th>Field 6</th>
+                            <th>Field 7</th>
+                            <th>Field 8</th>
+                            <th>Field 9</th>
+                            <th>Action</th>
+                            <th>Remark</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="info">
+                            <td>123456</td>
+                            <td>2016-10-16 00:00</td>
+                            <td>Normal</td>
+                            <td>Yes</td>
+                            <td>-10 min</td>
+                            <td>V000001</td>
+                            <td>NAME:xxx, #:xxx</td>
+                            <td>No</td>
+                            <td>
+                                <a class="btn btn-info">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info">Void</a>
+                                <a class="btn btn-info">Remark</a>
+                            </td>
+                            <td>No impact</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>123456</td>
+                            <td>2016-10-16 00:00</td>
+                            <td>W001</td>
+                            <td>Yes</td>
+                            <td>-10 min</td>
+                            <td>V000001</td>
+                            <td>NAME:xxx, #:xxx</td>
+                            <td>No</td>
+                            <td>
+                                <a class="btn btn-info">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info">Void</a>
+                                <a class="btn btn-info">Remark</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="danger">
+                            <td>123456</td>
+                            <td>2016-10-16 00:00</td>
+                            <td>E001</td>
+                            <td>Yes</td>
+                            <td>-10 min</td>
+                            <td>V000001</td>
+                            <td>NAME:xxx, #:xxx</td>
+                            <td>No</td>
+                            <td>
+                                <a class="btn btn-info">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info">Void</a>
+                                <a class="btn btn-info">Remark</a>
+                            </td>
+                            <td>Reported to SSM2014</td>
+                        </tr>
+                        <tr class="danger">
+                            <td>123456</td>
+                            <td>2016-10-16 00:00</td>
+                            <td>E001</td>
+                            <td>Yes</td>
+                            <td>-10 min</td>
+                            <td>V000001</td>
+                            <td>NAME:xxx, #:xxx</td>
+                            <td>No</td>
+                            <td>
+                                <a class="btn btn-info">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info">Void</a>
+                                <a class="btn btn-info">Remark</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="info">
+                            <td>123456</td>
+                            <td>2016-10-16 00:00</td>
+                            <td>Normal</td>
+                            <td>Yes</td>
+                            <td>-10 min</td>
+                            <td>V000001</td>
+                            <td>NAME:xxx, #:xxx</td>
+                            <td>No</td>
+                            <td>
+                                <a class="btn btn-info">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info">Void</a>
+                                <a class="btn btn-info">Remark</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div class="row pagination-panel">
+                    <nav>
+                        <ul class="pagination ">
+                            <li>
+                                <a href="#">&laquo;</a>
+                            </li>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">5</a>
+                            </li>
+                            <li>
+                                <a href="#">&raquo;</a>
+                            </li>
+                            <li><span>Page: 1/30</span></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-sm-3 chart-panel">
+                <div class="page-header">
+                    <h3>Summary</h3>
+                </div>
+
+                <div class="row">
+                    <div class="chart" id="test3"></div>
+                </div>
+                <div class="row">
+                    <div class="chart" id="test"></div>
+                </div>
+                <div class="row">
+                    <div class="chart" id="test2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endverbatim %}
+
+{% render_bundle 'dashboardMain' 'js' %}
+
+{% endblock %}
