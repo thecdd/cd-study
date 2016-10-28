@@ -1,7 +1,7 @@
 import datetime
 from mongoengine import *
 from VueDjango import env
-from ..decorator.mongo import update_system_info
+from core.decorator.mongo import update_system_info
 
 # register connection for mongoengine
 connect(env.DB_CONFIG.get('mongodb').get('db')
@@ -20,13 +20,14 @@ class UserCredential(Document, UpdateDocument):
     password = StringField()
     encryptionKey = StringField()
     identificationID = StringField()
-    userIPs = LineStringField()
+    userIPs = ListField()
     remark = StringField()
 
     meta = {
         'collection': 'fm_user_credential',
         'indexes': [
             {'fields': ['identificationID']},
+            {'fields': ['userIPs']},
         ],
     }
 
@@ -45,5 +46,19 @@ class UserDataStore(Document, UpdateDocument):
         'collection': 'fm_user_credential',
         'indexes': [
             {'fields': ['identificationID']},
+        ],
+    }
+
+
+@update_system_info.apply
+class UserRequestLog(Document, UpdateDocument):
+    path = StringField()
+    ip = StringField()
+
+    meta = {
+        'collection': 'fm_user_request_log',
+        'indexes': [
+            {'fields': ['ip']},
+            {'fields': ['path']},
         ],
     }
