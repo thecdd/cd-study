@@ -17,7 +17,7 @@ from django.conf.urls import url
 import modules.index.view.views
 
 view = [
-    url(r'^index/', modules.index.view.views.view_index)
+    url(r'(/)?', modules.index.view.views.view_index)
 ]
 
 api = [

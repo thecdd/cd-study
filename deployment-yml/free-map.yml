@@ -3,6 +3,8 @@ thecd-free-map:
   net: host
   environment:
     - ENV=QA
+    - STATIC_URL=/scaffold/static/
+    - BASE_URL=/scaffold/
     - ENV_MONGODB_HOST=mongodb://10.222.47.53/vue-django
   ports:
     - "8888:80"

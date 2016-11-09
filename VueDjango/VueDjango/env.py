@@ -11,5 +11,6 @@ DB_CONFIG = {
 }
 
 SITE_CONFIG = {
-    'static_url': os.getenv('STATIC_URL', '/static/')
+    'static_url': os.getenv('STATIC_URL', '/static/'),
+    'base_url': os.getenv('BASE_URL', '/'),
 }

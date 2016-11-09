@@ -9,6 +9,18 @@
     <link rel="shortcut icon" href="{% static 'common/favicon.ico' %}"/>
 
     <link rel="stylesheet" type="text/css" href="{% static 'common/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'common/leaflet/leaflet.css' %}">
+
+    <script type="text/javascript">
+        window.globalConfig={
+            'root':'{{ BASE_URL_PATH }}',
+            'staticRoot':'{{ STATIC_URL_PATH }}'
+        }
+        if(Object && Object.freeze){
+            Object.freeze(globalConfig);
+        }
+
+    </script>
 
     {% block extrahead %}{% endblock %}
 </head>

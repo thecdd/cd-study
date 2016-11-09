@@ -1,11 +1,11 @@
 require('./index.css');
 
 function goMap(){
-    window.location.href = '/free-map/main/';
+    window.location.href = window.globalConfig.root+'free-map/main/';
 }
 
 function goToDashboard(){
-    window.location.href = '/dashboard/main/';
+    window.location.href = window.globalConfig.root+'dashboard/main/';
 }
 
 
