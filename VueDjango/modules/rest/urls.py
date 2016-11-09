@@ -17,8 +17,8 @@ from django.conf.urls import url
 from modules.rest.api.vessel import VesselList, VesselDetail
 
 api = [
-    url(r'^vessel/$', VesselList.as_view()),
-    url(r'^vessel/(?P<vesselName>[\d\w]+)$', VesselDetail.as_view()),
+    url(r'^vessel(/)?$', VesselList.as_view()),
+    url(r'^vessel/(?P<imo>[\w\d]+)(/)?$', VesselDetail.as_view()),
 ]
 
 urlpatterns = []

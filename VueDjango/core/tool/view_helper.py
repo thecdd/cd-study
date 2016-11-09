@@ -1,4 +1,8 @@
+import json
 from django.shortcuts import render
+from django.http.response import HttpResponse
+from rest_framework.response import Response
+from rest_framework import status
 from VueDjango.env import SITE_CONFIG
 
 
@@ -18,3 +22,10 @@ def render_view(request, template_path, context=None):
     if context is not None:
         view_context.update(context)
     return render(request, template_path, view_context)
+
+
+def render_api(data, resp_status=status.HTTP_200_OK, is_json=True):
+    if is_json:
+        return HttpResponse(json.dumps(data), status=resp_status, content_type='application/json')
+    else:
+        return Response(data, status=resp_status)

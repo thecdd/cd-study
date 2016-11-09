@@ -6,14 +6,41 @@ vessel_list = [{
 
 
 class VesselService:
-    def get_all(self):
+    @staticmethod
+    def get_all():
         return vessel_list
 
-    def save(self, data):
+    @staticmethod
+    def save(data):
         vessel_list.append(data)
 
-    def valid(self, data):
+    @staticmethod
+    def valid(data):
         if data.get('vesselName') is None or data.get('imo') is None or data.get('mmsi') is None:
             return False
         else:
             return True
+
+    @staticmethod
+    def get_by(imo=None):
+        for tmp in vessel_list:
+            if tmp.get('imo') == imo:
+                return tmp
+
+        return None
+
+    def update_by(self, imo=None, data=None):
+        info = self.get_by(imo=imo)
+        if info is not None and data is not None:
+            info.update(data)
+            return True
+        else:
+            return False
+
+    def delete_by(self, imo=None):
+        info = self.get_by(imo=imo)
+        if info is not None:
+            vessel_list.remove(info)
+            return True
+        else:
+            return False
