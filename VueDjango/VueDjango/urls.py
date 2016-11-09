@@ -16,6 +16,6 @@ Including another URLconf
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^free-map/', include('FreeMap.urls')),
+    url(r'^free-map/', include('free_map.urls')),
     url(r'^dashboard/', include('dashboard.urls')),
 ]

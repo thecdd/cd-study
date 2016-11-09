@@ -1,7 +1,7 @@
 import json
 from django.http.response import HttpResponse
-from FreeMap.api.service.profile import ProfileService
-from FreeMap.api.tool.response_helper import build_api_response
+from free_map.api.service.profile import ProfileService
+from free_map.api.tool.response_helper import build_api_response
 from core.enum.signal import ResponseSignal
 from core.decorator.request import IPPermissionRequired
 
