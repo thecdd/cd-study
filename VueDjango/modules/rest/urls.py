@@ -13,11 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
+from modules.rest.api.vessel import VesselList, VesselDetail
 
-urlpatterns = [
-    url(r'^free-map/', include('modules.free_map.urls')),
-    url(r'^dashboard/', include('modules.dashboard.urls')),
-    url(r'^api/', include('modules.rest.urls')),
-    url(r'', include('modules.index.urls')),
+api = [
+    url(r'^vessel/$', VesselList.as_view()),
+    url(r'^vessel/(?P<vesselName>[\d\w]+)$', VesselDetail.as_view()),
 ]
+
+urlpatterns = []
+urlpatterns.extend(api)

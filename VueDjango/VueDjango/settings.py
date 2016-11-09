@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
+    'rest_framework',
     'modules.index',
     'modules.free_map',
-    'modules.dashboard'
+    'modules.dashboard',
+    'modules.rest'
 ]
 
 MIDDLEWARE_CLASSES = [
