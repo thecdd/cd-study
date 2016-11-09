@@ -1,5 +1,5 @@
-thecd-free-map:
-  image: thecd/free-map:latest
+thecd-scaffold:
+  image: thecd/scaffold:latest
   net: host
   environment:
     - ENV=QA
@@ -8,5 +8,5 @@ thecd-free-map:
     - ENV_MONGODB_HOST=mongodb://10.222.47.53/vue-django
   ports:
     - "8888:80"
-  container_name: thecd-free-map
+  container_name: thecd-scaffold
   command: ./VueDjango/start.sh

@@ -1,8 +1,8 @@
 #
 # This Dockerfile will install required packages of python app
 #
-# Usage: docker build --no-cache=true --rm=true --force-rm=true -t thecd/free-map:latest -f free-map.dockerfile .
-# Usage with cache enable: docker build --tag="thecd/free-map:latest" -f free-map.dockerfile .
+# Usage: docker build --no-cache=true --rm=true --force-rm=true -t thecd/scaffold:latest -f scaffold.dockerfile .
+# Usage with cache enable: docker build --tag="thecd/scaffold:latest" -f scaffold.dockerfile .
 #
 
 # Pull base image.

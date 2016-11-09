@@ -68,7 +68,6 @@ class VesselDetail(APIView):
 
     def delete(self, request, *args, **kwargs):
         imo = kwargs.get('imo')
-        data = request.data
         result = self.service.delete_by(imo=imo)
         if result:
             return render_api({}, resp_status=status.HTTP_200_OK)
