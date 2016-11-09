@@ -14,14 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-import dashboard.view.views
+import modules.index.view.views
 
 view = [
-    url(r'^main/', dashboard.view.views.view_main),
+    url(r'^index/', modules.index.view.views.view_index)
 ]
 
 api = [
-
 ]
 
 urlpatterns = []

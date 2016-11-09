@@ -5,9 +5,9 @@ var BundleTracker = require('webpack-bundle-tracker');
 module.exports = {
     context: __dirname,
     entry: {
-        freeMapMain:'./free_map/app/main/main.js',
-        dashboardMain: './dashboard/app/main/main.js',
-        index: './index/app/index/index.js'
+        freeMapMain:'./modules/free_map/app/main/main.js',
+        dashboardMain: './modules/dashboard/app/main/main.js',
+        index: './modules/index/app/index/index.js'
     },
     output: {
         path: path.resolve('./static/bundles/'),

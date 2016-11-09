@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
-    'index',
-    'free_map',
-    'dashboard'
+    'modules.index',
+    'modules.free_map',
+    'modules.dashboard'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'VueDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR],
+        'DIRS': [BASE_DIR + '/modules'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +123,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/common"),
-    os.path.join(BASE_DIR, "FreeMap/app"),
 )
 
 STATICFILES_FINDERS = (

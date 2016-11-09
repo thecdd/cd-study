@@ -14,15 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-import free_map.view.views
-import free_map.api.profile
+import modules.dashboard.view.views
 
 view = [
-    url(r'^main/', free_map.view.views.view_main),
+    url(r'^main/', modules.dashboard.view.views.view_main),
 ]
 
 api = [
-    url(r'^api/store/', free_map.api.profile.store_profile)
+
 ]
 
 urlpatterns = []
