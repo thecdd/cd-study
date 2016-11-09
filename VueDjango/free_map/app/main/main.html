@@ -2,7 +2,7 @@
 {% load render_bundle from webpack_loader %}
 
 {% block extrahead %}
-{% render_bundle 'main' 'css' %}
+{% render_bundle 'freeMapMain' 'css' %}
 {% endblock %}
 
 {% block content %}
@@ -53,5 +53,5 @@
 </div>
 {% endverbatim %}
 
-{% render_bundle 'main' 'js' %}
+{% render_bundle 'freeMapMain' 'js' %}
 {% endblock %}

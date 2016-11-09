@@ -1,0 +1,48 @@
+{% extends "index/app/base.html" %}
+{% load render_bundle from webpack_loader %}
+{% load staticfiles %}
+
+{% block title %}
+    App Scaffold
+{% endblock %}
+
+{% block extrahead %}
+{% render_bundle 'index' 'css' %}
+{% endblock %}
+
+{% block content %}
+{% verbatim %}
+<div id="app">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">App Scaffold</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Free Map</h1>
+
+            <p>
+                <a class="btn btn-lg btn-primary" role="button" onclick="goMap();">Go To&raquo;</a>
+            </p>
+        </div>
+        <div class="jumbotron">
+            <h1>Dashboard</h1>
+
+            <p>
+                <a class="btn btn-lg btn-primary" role="button" onclick="goToDashboard();">Go To&raquo;</a>
+            </p>
+        </div>
+
+    </div>
+
+
+</div>
+{% endverbatim %}
+
+{% render_bundle 'index' 'js' %}
+
+{% endblock %}

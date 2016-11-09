@@ -13,10 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
+import index.view.views
 
-urlpatterns = [
-    url(r'^free-map/', include('free_map.urls')),
-    url(r'^dashboard/', include('dashboard.urls')),
-    url(r'', include('index.urls')),
+view = [
+    url(r'^index/', index.view.views.view_index)
 ]
+
+api = [
+]
+
+urlpatterns = []
+urlpatterns.extend(view)
+urlpatterns.extend(api)
