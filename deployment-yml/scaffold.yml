@@ -1,6 +1,5 @@
 thecd-scaffold:
   image: thecd/scaffold:latest
-  net: host
   environment:
     - ENV=QA
     - STATIC_URL=/scaffold/static/
