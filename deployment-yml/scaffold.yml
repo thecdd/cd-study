@@ -6,6 +6,6 @@ thecd-scaffold:
     - BASE_URL=/scaffold/
     - ENV_MONGODB_HOST=mongodb://10.222.47.53/vue-django
   ports:
-    - "8888:80"
+    - "8888:8888"
   container_name: thecd-scaffold
   command: ./VueDjango/start.sh
