@@ -103,3 +103,4 @@ VueDjango/webpack-stats.json
 # static
 VueDjango2/static/bundles/*
 VueDjango2/webpack-stats.json
+VueDjango2/.idea/*
